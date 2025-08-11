@@ -9,11 +9,16 @@ namespace Domain.Entities
         public User(string email, string password)
         {
             Id = Guid.NewGuid();
+            Email = email;
+            Password = password;
         }
 
         public bool IsValid()
         {
-            return Email.Contains("@") && Password.Length >= 6;
+            return !string.IsNullOrEmpty(Email) && 
+                   Email.Contains("@") && 
+                   !string.IsNullOrEmpty(Password) && 
+                   Password.Length >= 6;
         }
     }
 }
